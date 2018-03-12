@@ -1,6 +1,7 @@
 buildscript {
 	ext {
 		springBootVersion = '2.0.0.RELEASE'
+		apacheCommonsLang3Version = '3.5'
 	}
 	repositories {
 		mavenCentral()
@@ -31,6 +32,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-validation')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.flywaydb:flyway-core')
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: apacheCommonsLang3Version
 	runtime('mysql:mysql-connector-java')
 	compileOnly('org.springframework.boot:spring-boot-configuration-processor')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
