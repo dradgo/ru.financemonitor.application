@@ -1,5 +1,7 @@
 package ru.financemonitor.security.model.entity;
 
+import ru.financemonitor.core.model.entity.AbstractUuidEntity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -10,21 +12,10 @@ import java.util.List;
  *
  */
 @Entity
-@Table(name="UserRole")
-public class UserRole implements Serializable {
-	@Id
-	@Column(name="user_role_id")
-	@GeneratedValue(strategy= GenerationType.AUTO)
-	private long id;
+public class UserRole extends AbstractUuidEntity {
 	private String name;
 	private String code;
 
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}

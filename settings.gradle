@@ -1,0 +1,2 @@
+rootProject.name='Finance Monitor'
+include 'app-ui', 'app-api'

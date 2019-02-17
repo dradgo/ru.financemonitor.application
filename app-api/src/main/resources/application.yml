@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: finance monitor
+  datasource:
+    url: jdbc:mysql://localhost:3306/financemonitor_dev
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: password
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      ddl-auto: validate
+    show-sql: true
+    generate-ddl: false
+  servlet:
+    multipart:
+      max-file-size: 100mb
+      max-request-size: 100mb
+  flyway:
+    enabled: true
+logging:
+    level:
+        ROOT: DEBUG

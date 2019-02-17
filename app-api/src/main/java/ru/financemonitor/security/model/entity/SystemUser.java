@@ -1,32 +1,27 @@
 package ru.financemonitor.security.model.entity;
 
+import ru.financemonitor.core.model.entity.AbstractUuidEntity;
+import ru.financemonitor.core.model.entity.Account;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name="SystemUser")
-public class SystemUser {
-	@Id
-	@Column(name="system_user_id")
-	@GeneratedValue(strategy= GenerationType.AUTO)
-	private long id;
+public class SystemUser extends AbstractUuidEntity {
 	private String login;
 	private String password;
 	private String email;
 
 	@ManyToMany
-	@JoinTable(name="UserRoles",
+	@JoinTable(name="user_roles",
 			joinColumns=@JoinColumn(name="system_user_id"),
 			inverseJoinColumns=@JoinColumn(name="user_role_id"))
 	private List<UserRole> roles;
+	@ManyToOne
+	@JoinColumn(name = "account_id")
+	private Account account;
 
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
 	public String getLogin() {
 		return login;
 	}
@@ -53,28 +48,16 @@ public class SystemUser {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SystemUser other = (SystemUser) obj;
-		return id == other.id;
-	}
-
-	@Override
 	public String toString() {
 		return "SystemUser [email=" + email + ", id=" + id + ", login=" + login
 				+ "]";
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 }
